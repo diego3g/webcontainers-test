@@ -5,7 +5,9 @@ import './styles/placeholder.css'
 
 import Document from '@tiptap/extension-document'
 import Placeholder from '@tiptap/extension-placeholder'
+
 import { EditorBlock } from './plugins/EditorBlock'
+import { TrailingNode } from './plugins/TrailingNode'
 
 export function Editor() {
   const editor = useEditor({
@@ -28,18 +30,18 @@ export function Editor() {
             return 'Untitled'
           }
 
+          if (node.type.name === 'editorBlock') {
+            return ''
+          }
+
           return "Type '/' to see commands..."
         },
       }),
       EditorBlock,
+      TrailingNode,
     ],
-    content: `<h1>adsdsads</h1><editor-block name="test.tsx">const testando = new Codigo()</editor-block>`,
+    content: ``,
   })
 
-  return (
-    <>
-      {/* <button onClick={() => console.log(editor?.getHTML())}>Print content</button> */}
-      <EditorContent editor={editor} />
-    </>
-  )
+  return <EditorContent editor={editor} />
 }

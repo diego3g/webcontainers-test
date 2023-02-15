@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss/tailwind-config').TailwindConfig} */
 module.exports = {
-  content: [
-    './src/**/*.tsx'
-  ],
+  content: ['./src/**/*.tsx'],
   theme: {
     extend: {
       fontFamily: {
@@ -21,11 +19,9 @@ module.exports = {
           purple: '#78D1E1',
           red: '#E96379',
           yellow: '#e7de79',
-        }
-      }
+        },
+      },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography')
-  ],
+  plugins: [require('@tailwindcss/typography')],
 }

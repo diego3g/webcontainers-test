@@ -1,5 +1,6 @@
 import { Node, textblockTypeInputRule } from '@tiptap/core'
 import { mergeAttributes, ReactNodeViewRenderer } from '@tiptap/react'
+
 import { WebContainerEditor } from '../WebContainerEditor'
 
 export const backtickInputRegex = /^```([a-z]+)?[\s\n]$/
@@ -7,9 +8,20 @@ export const backtickInputRegex = /^```([a-z]+)?[\s\n]$/
 export const EditorBlock = Node.create({
   name: 'editorBlock',
   content: 'text*',
-  code: true,
+  marks: '',
   group: 'block',
-  atom: true,
+  code: true,
+  defining: true,
+  isolating: true,
+
+  addOptions() {
+    return {
+      languageClassPrefix: 'language-',
+      exitOnTripleEnter: true,
+      exitOnArrowDown: true,
+      HTMLAttributes: {},
+    }
+  },
 
   addInputRules() {
     return [
@@ -20,20 +32,20 @@ export const EditorBlock = Node.create({
     ]
   },
 
+  addKeyboardShortcuts() {
+    return {
+      Enter: ({ editor }) => {
+        return false
+      },
+    }
+  },
+
   addNodeView() {
     return ReactNodeViewRenderer(WebContainerEditor)
   },
 
-  addAttributes() {
-    return {}
-  },
-
   parseHTML() {
-    return [
-      {
-        tag: 'editor-block',
-      },
-    ]
+    return [{ tag: 'editor-block' }]
   },
 
   renderHTML({ HTMLAttributes }) {
