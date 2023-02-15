@@ -1,0 +1,34 @@
+{
+  "name": "livedocs",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tiptap/core": "^2.0.0-beta.209",
+    "@tiptap/extension-document": "2.0.0-beta.217",
+    "@tiptap/extension-placeholder": "2.0.0-beta.217",
+    "@tiptap/pm": "2.0.0-beta.217",
+    "@tiptap/react": "2.0.0-beta.217",
+    "@tiptap/starter-kit": "2.0.0-beta.217",
+    "phosphor-react": "^1.4.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@rocketseat/eslint-config": "1.2.0",
+    "@tailwindcss/typography": "^0.5.9",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^3.1.0",
+    "autoprefixer": "^10.4.13",
+    "eslint": "8.34.0",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.6",
+    "typescript": "^4.9.5",
+    "vite": "^4.1.1"
+  }
+}
