@@ -4,6 +4,7 @@ import ANSIToHTML from 'ansi-to-html'
 import CodeEditor from '@uiw/react-textarea-code-editor'
 import { getWebContainerInstance } from '../../../lib/web-container'
 import { useState } from 'react'
+import { extractCodeDeps } from '../../../utils/extract-code-deps'
 
 const initialCode = [
   `import 'isomorphic-fetch';`,
@@ -22,6 +23,7 @@ export function WebContainerEditor() {
   async function handleEvaluateCode() {
     setIsRunning(true)
 
+    const codeDependencies = extractCodeDeps(code)
     const webContainer = await getWebContainerInstance()
 
     await webContainer.mount({
@@ -36,10 +38,7 @@ export function WebContainerEditor() {
             {
               "name": "example-app",
               "type": "module",
-              "dependencies": {
-                "chalk": "latest",
-                "isomorphic-fetch": "latest"
-              },
+              "dependencies": ${codeDependencies},
               "scripts": {
                 "start": "node index.js"
               }
@@ -95,6 +94,7 @@ export function WebContainerEditor() {
         padding={20}
         spellCheck={false}
         className="text-sm bg-[#21202e] font-monospace rounded"
+        data-color-mode="dark"
       />
       <div
         className="bg-black p-5 min-h-[64px] rounded mt-2 text-sm relative"
